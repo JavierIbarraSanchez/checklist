@@ -11,6 +11,66 @@
         {% load static %}
 </head>
 <body>
-    
+    <div>
+            
+        <div>
+            <table  class="table table-striped table-hover">
+
+
+                <thead>
+                        <th>Nombre actividad</th>
+                        <th>Descripcion actividad</th>
+                        <th>Realizado?</th>
+                        <th><a href="" type="submit" class="btn-success" style=" padding: 2.5%;;"> Crear Nueva actividad</a></th>
+                </thead>
+                <tbody id = "Listado">
+
+                </tbody>
+               
+            </table>
+            <div id="Listado"></div>
+        </div> 
+    </div> 
+
+
+    <script>  
+    ConstruirLista()
+        function ConstruirLista(){
+            var listado = document.getElementById('Listado')
+
+            var url = 'http://127.0.0.1:8000/api/Actividad/Ver/'
+
+            fetch(url)
+            .then((resp) => resp.json())
+            .then(function(data){
+                console.log('data',data)
+
+                var list = data
+
+                for(var i in list ){
+
+                    var item =  `
+                        <tr><td > ${list[i].nombre_actividad}</td>
+                        <td "> ${list[i].descripcion_actividad}</td>
+                        <td "> ${list[i].actividad_realizada}</td>
+                        <td "> <button class ="btn-danger" ><a href = "">Eliminar</a> </button> 
+                                                <button class ="btn-primary"> <a href = "">Modificar</a></button> </td>
+                        
+                        
+                        </tr> 
+                    ` 
+
+                    listado.innerHTML += item
+                    
+                    
+                    
+
+                }
+
+            })
+
+        }
+
+    </script>
 </body>
 </html>
