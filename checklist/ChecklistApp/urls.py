@@ -3,10 +3,11 @@ from django.urls import path,  re_path
 from . import views
 urlpatterns = [
     path('', views.index, name='home'),
-    path('/Actividades/', views.Actdetalle, name='Actividades'),
+    path('/Actividades/<int:id_checklist>', views.Actdetalle, name='Actividades'),
     path('/Checklist/Crear_Checklist ', views.Crear_check, name='crearchecklist'),
     path('/Checklist/eliminar/<int:id_checklist>/',views.eliminar_checklist, name='eliminarchecklist'),
     path('/Checklist/modificar/<int:id_checklist>/', views.editar_checklist, name = 'editarchecklist'),
+    path('/Actividades/Crear Actividad', views.crear_actividad, name = 'crearactividad'),
 
 
     #Apis urls

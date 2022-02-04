@@ -37,6 +37,7 @@ def ChecklistApiOverview(request):
 
 @api_view(['POST'])
 def crear_actividad(request):
+    print(request.data)
     actividad = ActividadSerializer(data = request.data)
 
     if Actividad.objects.filter(**request.data).exists():

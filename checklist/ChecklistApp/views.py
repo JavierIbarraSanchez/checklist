@@ -24,15 +24,15 @@ def index(request):
     )
 
 def Actdetalle(request,**kwargs):
-    # id_checklist = kwargs.get('id_checklist')
-    # actividad = Actividad.objects.filter(id_checklist = id_checklist)
-    # checklist = Checklist.objects.filter(id_checklist = id_checklist)
+    id_checklist = kwargs.get('id_checklist')
+    actividad = Actividad.objects.filter(id_checklist = id_checklist)
+    checklist = Checklist.objects.filter(id_checklist = id_checklist)
 
     
     return render(
         request,
         'actividad/Actdetalle.html',
-        # context = {'datos_act' : actividad, 'datos_check':checklist }
+         context = {'datos_act' : actividad, 'datos_check':checklist }
     )
 
 def Crear_check(request):
@@ -65,3 +65,17 @@ def editar_checklist(request,**kwargs):
         form = Checklistform(instance= check )
     context = { 'form': form }
     return render(request,"checklist/Checkedit.html",context)
+
+def Crear_actividad(request,**kwargs):
+
+    id_checklist = kwargs('id_checklist')
+
+    if request.method == "POST":
+        form = Checklistform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = Checklistform()
+    context = { 'form':form}
+    return render(request,'checklist/CheckCrear.html',context)
