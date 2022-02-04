@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+        {# Cargamos la librería #}
+        {% load bootstrap4 %}
+     
+        {# CSS Bootstrap #}
+        {% bootstrap_css %} 
+        
+        {# Archivos #}
+        {% load static %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div>
+            <p>Nombre actividad</p>
+            {{ form.nombre_actividad }}
+        </div>
+        <div>
+            <p>Descripcion</p>
+            {{ form.descripcion_actividad }}
+        </div>
+        <div>
+            <p>Realizada</p>
+            {{ form.actividad_realizada }}
+        </div>
+        <div>
+            
+            {{ form.id_checklist}}
+        </div>
+
+        <button>editar actividad</button>
+    </form>
+</body>
+
+</html>

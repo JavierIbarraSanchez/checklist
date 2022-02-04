@@ -47,7 +47,7 @@
               </svg></td>
             {% endif %}
             <td><button  class ="btn-danger"> <a href = "{% url 'eliminaractividad' datos_act.id_actividad %}">Eliminar</a></button> 
-                <button class ="btn-primary"> Modificar</button> </td>
+                <button class ="btn-primary"> <a href = "{% url 'editaractividad' datos_act.id_actividad %}">Modificar</a></button> </td>
         </tr>
         {% endfor %}
                 </tbody>

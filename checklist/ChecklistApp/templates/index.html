@@ -14,19 +14,18 @@
    
 </head>
 <body>
-        <div>
+        <div class="container">
             
-            <div>
+           
                 <table class="table table-striped table-hover">
-
-
                     <thead>
                             <th>Nombre Checklist</th>
                             <th>Descripcion Checklist</th>
                             <th>Fecha </th>
                             <th>Favorito</th>
                             <th>Actividad</th>
-                            <th><a href="{% url 'crearchecklist' %}" type="submit" class="btn-success" style=" padding: 2.5%;;"> Crear Nuevo Checklist</a></th>
+                            <th> <button type="button" class="btn btn-success" data-toggle="modal" data-target = "#modalCrear">Crear nuevo Checklist
+                            </button></th>
                     </thead>
                     <tbody>
             {% for datos_check in datos_check  %}
@@ -44,14 +43,122 @@
                   </svg></td>
                 {% endif %}
                 <td><a href ="{% url 'Actividades' datos_check.id_checklist %}"class="btn btn-info"> Actividades</a></td>
-                <td><button class ="btn-danger" ><a href = "{% url 'eliminarchecklist' datos_check.id_checklist %}">Eliminar</a> </button> 
-                    <button class ="btn-primary"> <a href = "{% url 'editarchecklist' datos_check.id_checklist %}">Modificar</a></button> </td>
+                <td><button class =" btn btn-danger" ><a href = "{% url 'eliminarchecklist' datos_check.id_checklist %}">Eliminar</a> </button> 
+                    <button class =" btn btn-primary"> <a href = "{% url 'editarchecklist' datos_check.id_checklist %}">Modificar</a></button> </td>
             </tr>
             {% endfor %}
                     </tbody>
                 </table>
+
+                
+
+                </div>
             </div> 
         </div> 
+        
+        </div>
+        <div class="container">
+            
+            <div class="modal fade" id="modalCrear">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Crear nuevo checklist</h3>
+                            <button type ="button"  data-dismiss = "modal" aria-label="close" class="close">&times;</button>
+                            
+                        </div>
+                        <div class="modal-body">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <div id="labels">
+                                    <label for="">Nombre checklist</label>
+                                </div>
+                                <div class="imputs">
+                                    {{ form.nombre_checklist }}
+
+                                </div>
+                                <div id="labels">
+                                    <label for="">Fecha Checklist</label>
+                                </div>
+                                <div class="imputs">
+                                    {{ form.fecha_plazo}}
+                                </div>
+                                <div id="labels">
+                                    <label for="">Descripcion Checklist</label>
+                                </div>
+                                <div class="imputs">
+                                    {{ form.descripcion_checklist}}
+                                </div>
+                                <div class="boton">
+                                <div class="imputs">
+                                        {{ form.favorito}}<label class="checkbox" style="margin-left: 1%;">Descripcion Checklist</label>
+                                    </div>
+                                    <div id="labels">
+                                        
+                                </div>
+                                    <di
+                                    <div class="boton">
+
+                                    <button class="btn btn-success" style="margin-top: 1.5%;">Crear checklist</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="container">
+            
+            <div class="modal fade" id="modalModificar">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Crear nuevo checklist</h3>
+                            <button type ="button"  data-dismiss = "modal" aria-label="close" class="close">&times;</button>
+                            
+                        </div>
+                        <div class="modal-body">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <div id="labels">
+                                    <label for="">Nombre checklist</label>
+                                </div>
+                                <div class="imputs">
+                                    {{ form.nombre_checklist }}
+
+                                </div>
+                                <div id="labels">
+                                    <label for="">Fecha Checklist</label>
+                                </div>
+                                <div class="imputs">
+                                    {{ form.fecha_plazo}}
+                                </div>
+                                <div id="labels">
+                                    <label for="">Descripcion Checklist</label>
+                                </div>
+                                <div class="imputs">
+                                    {{ form.descripcion_checklist}}
+                                </div>
+                                <div class="boton">
+                                <div class="imputs">
+                                        {{ form.favorito}}<label class="checkbox" style="margin-left: 1%;">Descripcion Checklist</label>
+                                    </div>
+                                    <div id="labels">
+                                        
+                                </div>
+                                    <di
+                                    <div class="boton">
+
+                                    <button class="btn btn-success" style="margin-top: 1.5%;">Crear checklist</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+         
+    
+           
     {# JS y jQuery Bootstrap #}
       {% bootstrap_javascript jquery='full' %}
 </body>

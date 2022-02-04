@@ -17,11 +17,22 @@ def index(request):
     
     checklist = Checklist.objects.all()
 
+    #Formulario de posteo:
+    
+    if request.method == "POST":
+        form = Checklistform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = Checklistform()
+    
+
     # Renderiza la plantilla HTML index.html con los datos en la variable contexto
     return render(
         request,
         'index.html',
-        context = {'datos_check' : checklist}
+        context = {'datos_check' : checklist,'form':form}
     )
 
 def Actdetalle(request,**kwargs):
@@ -45,7 +56,7 @@ def Crear_check(request):
     else:
         form = Checklistform()
     context = { 'form':form}
-    return render(request,'checklist/CheckCrear.html',context)
+    return render(request,'checklist/index.html',context)
 
 
 def eliminar_checklist(request,**kwargs):
@@ -86,21 +97,26 @@ def Crear_actividad(request,**kwargs):
 def eliminar_actividad(request,**kwargs):
     id_actividad = kwargs.get('id_actividad')
     check =  get_object_or_404(Actividad,id_actividad=id_actividad)
+    id_foranea = check.id_checklist.id_checklist
+    print(id_foranea)
+    id_string = str(id_foranea)
     
     check.delete()
-    return(redirect("home"))
+    return(redirect('http://127.0.0.1:8000/%2FActividades/'+id_string))
 
 
 def editar_actividad(request,**kwargs):
     id_actividad = kwargs.get('id_actividad')
     check = Actividad.objects.get(id_actividad = id_actividad)
-
+    id_foranea = check.id_checklist.id_checklist
+    print(id_foranea)
+    id_string = str(id_foranea)
     if request.method == "POST":
         form = Actividadform(request.POST,instance = check )
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('http://127.0.0.1:8000/%2FActividades/'+id_string)
     else:
         form = Actividadform(instance= check )
     context = { 'form': form }
-    return render(request,"actividad/Actdetalle.html",context)
+    return render(request,"actividad/Actedit.html",context)
