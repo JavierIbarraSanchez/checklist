@@ -107,54 +107,11 @@
                 </div>
         </div>
 
-        <div class="container">
+        <div class="modal fade" id="editar_checklist" role="dialog">
+
+
+
             
-            <div class="modal fade" id="modalModificar">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title">Crear nuevo checklist</h3>
-                            <button type ="button"  data-dismiss = "modal" aria-label="close" class="close">&times;</button>
-                            
-                        </div>
-                        <div class="modal-body">
-                            <form action="" method="post">
-                                {% csrf_token %}
-                                <div id="labels">
-                                    <label for="">Nombre checklist</label>
-                                </div>
-                                <div class="imputs">
-                                    {{ form.nombre_checklist }}
-
-                                </div>
-                                <div id="labels">
-                                    <label for="">Fecha Checklist</label>
-                                </div>
-                                <div class="imputs">
-                                    {{ form.fecha_plazo}}
-                                </div>
-                                <div id="labels">
-                                    <label for="">Descripcion Checklist</label>
-                                </div>
-                                <div class="imputs">
-                                    {{ form.descripcion_checklist}}
-                                </div>
-                                <div class="boton">
-                                <div class="imputs">
-                                        {{ form.favorito}}<label class="checkbox" style="margin-left: 1%;">Descripcion Checklist</label>
-                                    </div>
-                                    <div id="labels">
-                                        
-                                </div>
-                                    <di
-                                    <div class="boton">
-
-                                    <button class="btn btn-success" style="margin-top: 1.5%;">Crear checklist</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
         </div>
          
     

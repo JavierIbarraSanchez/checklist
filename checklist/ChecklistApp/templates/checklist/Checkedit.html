@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
- 
-        {# Cargamos la librería #}
-        {% load bootstrap4 %}
-     
-        {# CSS Bootstrap #}
-        {% bootstrap_css %} 
-        
-        {# Archivos #}
-        {% load static %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<body>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button>editar checklist</button>
-    </form>
-</body>
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-conten">
+        <div class="modal-header">
+            <h2 class="modal-title"> Editar Checklist</h2>
+            <button class="close" type = "button" data-dismiss = "modal" aria-label="close"><span aria-hidden="true" >$times;</span></button>
+            <div class="modal-body">
+                    {{form}}
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" type="button" data-dismiss = "modal"> Cancelar</button>
+                <button class="btn btn-prymary" type="submit">Aceptar</button>
+            </div>
 
-</html>
+        </div>
+    </div>
+
+
+</div>
