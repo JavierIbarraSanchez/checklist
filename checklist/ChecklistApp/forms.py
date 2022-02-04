@@ -12,5 +12,5 @@ class Checklistform(forms.ModelForm):
 class Actividadform(forms.ModelForm):
 
     class Meta: 
-        model = Checklist
+        model = Actividad
         fields = ['nombre_actividad','descripcion_actividad','actividad_realizada','id_checklist']

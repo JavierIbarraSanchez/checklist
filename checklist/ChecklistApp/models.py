@@ -25,14 +25,13 @@ class Checklist(models.Model):
 class Actividad(models.Model):
     id_actividad = models.AutoField(primary_key=True)
     nombre_actividad = models.CharField(max_length=250)
-    descripcion_actividad = models.CharField(max_length=500)
+    descripcion_actividad = models.TextField(max_length=500)
     actividad_realizada = models.BooleanField(default=False)
-    id_checklist = models.ForeignKey(Checklist ,models.DO_NOTHING, db_column='id_Checklist')
+    id_checklist = models.ForeignKey(Checklist ,on_delete=models.CASCADE, db_column='id_checklist')
 
 
 
     class Meta:
-        managed = False
         db_table = 'actividad'
     
     def __str__(self):

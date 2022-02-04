@@ -7,7 +7,9 @@ urlpatterns = [
     path('/Checklist/Crear_Checklist ', views.Crear_check, name='crearchecklist'),
     path('/Checklist/eliminar/<int:id_checklist>/',views.eliminar_checklist, name='eliminarchecklist'),
     path('/Checklist/modificar/<int:id_checklist>/', views.editar_checklist, name = 'editarchecklist'),
-    path('/Actividades/Crear Actividad', views.crear_actividad, name = 'crearactividad'),
+    path('/Actividades/CrearActividad/<int:id_checklist>', views.Crear_actividad, name = 'crearactividad'),
+    path('/Actividades/eliminar/<int:id_actividad>',views.eliminar_actividad, name='eliminaractividad'),
+    path('/Actividades/modificar/<int:id_actividad>/', views.editar_actividad, name = 'editaractividad'),
 
 
     #Apis urls

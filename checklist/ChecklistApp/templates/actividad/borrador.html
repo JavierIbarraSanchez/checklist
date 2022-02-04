@@ -168,3 +168,110 @@
     </script>
 </body>
 </html>
+
+
+<!DOCTYPE html>
+<html >
+<head>
+    
+    <title>Document</title>
+    {# Cargamos la librería #}
+    {% load bootstrap4 %}
+    <title>Actividades</title>
+    {# CSS Bootstrap #}
+    {% bootstrap_css %} 
+    
+    {# Archivos #}
+    {% load static %}
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container" style="margin-top: 1%;  ">
+        <div class="task-cotainer">
+                <div id = "formulario">
+                    <form id= "form">
+                        <div class="flex-wrapper">
+
+                            <div>
+                                <label for="nombre-actividad">Nombre de la actividad</label>
+                                <input type="text" id = "nombre-actividad" class="form-control " name="nombre-actividad" placeholder="nombre actividad">
+                            </div>
+                            <div>
+                                <label for="descripcion-actividad">Descripcion de la actividad</label>
+                                <textarea type="text" id = "descripcion-actividad" class="form-control " name="descripcion-actividad" placeholder="Descripcion"></textarea>
+                                
+                            </div>
+                            <div>
+                                <input type="checkbox" id = "actividad-realizada" class="form-checkbox " name="nombre-actividad" value="1">
+                                <label for="actividad-realizada">Se a Realizado?</label>
+                            </div>
+                            <div>
+                                <label for="id-checklist">id checklist</label>
+                                <input type="text" id = "id-checklist" class="form-control " name="nombre-actividad" placeholder="id actividad">
+                            </div>
+                            <div style="margin-top: 1.5% ;">
+                                <input type="submit" id = "submit-crear" class="btn-primary " name="nombre-actividad" value = "Crear actividad ">
+                            </div>
+                        </div>
+
+                    </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+
+        function getCookie(name) {
+            let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+            return cookieValue;
+            }
+        const csrftoken = getCookie('csrftoken');
+
+        var form = document.getElementById('formulario')
+        form.addEventListener('submit',function(e){
+            e.preventDefault()
+            console.log('Funciona')
+
+            var url = "http://127.0.0.1:8000/api/Actividad/Crear/"
+            var nombre_actividad = document.getElementById('nombre-actividad').value
+            var descripcion_actividad = document.getElementById('descripcion-actividad').value
+            var actividad_realizada = document.getElementById('actividad-realizada').value
+            var id_checklist= document.getElementById('id-checklist').value
+            console.log('Nombre',nombre_actividad,'descripcion',
+            descripcion_actividad,'realizado',actividad_realizada,'id',id_checklist)
+            
+            fetch(url,{
+                method: 'POST',
+                Headers:{
+                    'dataType': 'json',
+                    'Content-type':'application/json',
+                    'X-CRFTOKEN': csrftoken,
+                },
+                body: JSON.stringify({'nombre_actividad':nombre_actividad
+                                        })
+
+            },
+
+
+                ).then(function(response){
+                })
+                
+        })
+
+
+    </script>
+</body>
+</html>

@@ -2,6 +2,7 @@ from dataclasses import field
 from email import message
 from multiprocessing import context
 from pyexpat import model
+from xml.etree.ElementTree import tostring
 from django.shortcuts import get_object_or_404, redirect, render
 from ChecklistApp.models import *
 from rest_framework.decorators import api_view
@@ -68,14 +69,38 @@ def editar_checklist(request,**kwargs):
 
 def Crear_actividad(request,**kwargs):
 
-    id_checklist = kwargs('id_checklist')
+    id_checklist = kwargs.get('id_checklist')
+    check = Checklist.objects.get(id_checklist = id_checklist)
+    id_string = str(id_checklist)
 
     if request.method == "POST":
-        form = Checklistform(request.POST)
+        form = Actividadform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('http://127.0.0.1:8000/%2FActividades/'+id_string)
+    else:
+        form = Actividadform()
+    context = { 'form':form, 'check_id':check}
+    return render(request,'actividad/ActCrear.html',context)
+
+def eliminar_actividad(request,**kwargs):
+    id_actividad = kwargs.get('id_actividad')
+    check =  get_object_or_404(Actividad,id_actividad=id_actividad)
+    
+    check.delete()
+    return(redirect("home"))
+
+
+def editar_actividad(request,**kwargs):
+    id_actividad = kwargs.get('id_actividad')
+    check = Actividad.objects.get(id_actividad = id_actividad)
+
+    if request.method == "POST":
+        form = Actividadform(request.POST,instance = check )
         if form.is_valid():
             form.save()
             return redirect('home')
     else:
-        form = Checklistform()
-    context = { 'form':form}
-    return render(request,'checklist/CheckCrear.html',context)
+        form = Actividadform(instance= check )
+    context = { 'form': form }
+    return render(request,"actividad/Actdetalle.html",context)
