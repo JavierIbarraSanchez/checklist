@@ -24,8 +24,8 @@
 
                 <thead>
                         <th>Nombre actividad</th>
-                        <th>Descripcion actividad</th>
-                        <th>actividad realizada </th>
+                        <th>Descripción actividad</th>
+                        <th>Actividad realizada </th>
                         <th>
                             {% for datos_check in datos_check %}
                             <button type="button" class="btn btn-success" data-toggle="modal" onclick="abrir_modal_crear('{% url 'crearactividad' datos_check.id_checklist %}')">Crear nuevo Checklist
@@ -44,7 +44,7 @@
             <td><input type="checkbox" name="Realizado" id="Realizado" value="True"></td>
             {% endif %}
             <td><button  class ="btn-danger"> <a href = "{% url 'eliminaractividad' datos_act.id_actividad %}">Eliminar</a></button> 
-                <button class ="btn-primary"> <a href = "{% url 'editaractividad' datos_act.id_actividad %}">Modificar</a></button> </td>
+                <button class ="btn-primary" onclick="abrir_modal_editar('{% url 'editaractividad' datos_act.id_actividad %}')"> Modificar</button> </td>
         </tr>
         {% endfor %}
                 </tbody>
@@ -55,9 +55,11 @@
             
         <div class="modal fade" id="modalCrear">
         </div>
+    </div>
 
-    
-    
+    <div class="container">  
+        <div class="modal fade" id="modalEditar">
+        </div>
     </div>
 
     <script type="text/javascript">
@@ -67,6 +69,18 @@
                 $(this).modal('show');
             })
         }
+
+
+        function abrir_modal_editar(url){
+
+            $('#modalEditar').load(url, function(){
+                $(this).modal('show');
+            })
+        }
+
+
+
+
     </script>
     {# JS y jQuery Bootstrap #}
       {% bootstrap_javascript jquery='full' %}

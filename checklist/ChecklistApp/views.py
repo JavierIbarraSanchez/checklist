@@ -89,6 +89,9 @@ class ActualizarChecklist(UpdateView):
         context['Checklist'] = Checklist.objects.all()
         return context
 
+
+
+
 def editar_checklist(request,**kwargs):
     id_checklist = kwargs.get('id_checklist')
     check = Checklist.objects.get(id_checklist = id_checklist)
@@ -135,6 +138,7 @@ def editar_actividad(request,**kwargs):
     id_foranea = check.id_checklist.id_checklist
     print(id_foranea)
     id_string = str(id_foranea)
+    
     if request.method == "POST":
         form = Actividadform(request.POST,instance = check )
         if form.is_valid():
@@ -142,5 +146,17 @@ def editar_actividad(request,**kwargs):
             return redirect('http://127.0.0.1:8000/%2FActividades/'+id_string)
     else:
         form = Actividadform(instance= check )
-    context = { 'form': form }
+    context = { 'form': form, 'id_actividad':id_actividad }
     return render(request,"actividad/Actedit.html",context)
+
+
+class ActualizarActividad(UpdateView):
+    model = Actividad
+    form_class = Actividadform
+    template_name = 'actividad/Actedit.html'
+    success_url = reverse_lazy('Actividades')
+
+    def get_context_data(self,**kgargs):
+        context = super().get_context_data(**kgargs)
+        context['Actividad'] = Checklist.objects.all()
+        return context
