@@ -1,0 +1,22 @@
+#labels {
+    display: flex;
+    align-items: center;
+}
+.imputs{
+    background-color: #fafafa;
+  margin: 1%;
+ 
+  /* IMPORTANTE */
+  text-align: center
+}
+
+.modal-text{
+    text-align: center;
+    margin-top: 0.5%;
+    width: 100%;
+}
+
+.modal-text-mod-check{
+    text-align: center;
+    margin-top: 0.5%;
+}

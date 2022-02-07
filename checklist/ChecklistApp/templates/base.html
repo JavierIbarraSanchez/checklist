@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Checklist {% block tittle %}{% endblock %} </title>
+   
+    {# Cargamos la librería #}
+    {% load bootstrap4 %}
+ 
+    {# CSS Bootstrap #}
+    {% bootstrap_css %} 
+    
+    {# Archivos #}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/Styles.css' %}" media ="all"/>
+    <link rel="stylesheet" href="{% static 'css/Modal.css' %}" media ="all"/>
+    
+    {% load static %}
+
+
+
+
+</head>
+<body style="background-image: url('{% static "img/imagenNuves.jpeg" %}');">
+
+    {% block body %}
+	<!--BODY-->
+	{% endblock %}
+    <script src="{% static 'js/Modals.js' %}"></script>
+    {# JS y jQuery Bootstrap #}
+    {% bootstrap_javascript jquery='full' %}
+    {% block js %}
+    {% endblock %}
+    
+</body>
+</html>

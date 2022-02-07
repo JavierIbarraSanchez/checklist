@@ -1,0 +1,14 @@
+body {
+    background-image: url('{% static "img/imagenNuves.jpeg" %}');
+    background-color: #cccccc;
+   }
+
+#Tabla{
+    background-color: white;
+    margin-top: 25%;
+    border: 2px solid #ccc;
+}
+
+.tablita{
+    border-radius: 50%;
+}

@@ -1,3 +1,8 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tittle %}Inicio{% endblock %}
+{%block body %}
+
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
@@ -8,20 +13,19 @@
                 {% csrf_token %}
             <div class="modal-body">
                 <div id="labels">
-                    <label for="">Nombre checklist</label>
+                    <p class="modal-text">Nombre Checklist</p>
                 </div>
                 <div class="imputs">
                     {{ form.nombre_checklist }}
-
                 </div>
                 <div id="labels">
-                    <label for="">Fecha Checklist</label>
+                    <p class="modal-text">Fecha Plazo</p>
                 </div>
                 <div class="imputs">
                     {{ form.fecha_plazo}}
                 </div>
                 <div id="labels">
-                    <label for="">Descripcion Checklist</label>
+                    <p class="modal-text">Descripción Checklist</p>
                 </div>
                 <div class="imputs">
                     {{ form.descripcion_checklist}}
@@ -37,3 +41,5 @@
 
 
 </div>
+
+{% endblock %}
