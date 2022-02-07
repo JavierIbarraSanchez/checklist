@@ -10,8 +10,7 @@ class Checklist(models.Model):
     fecha_creacion = models.DateField(auto_now_add=True, blank=True)
     fecha_plazo = models.DateField()
     nombre_checklist = models.CharField(max_length=250)
-    descripcion_checklist = models.CharField(max_length=250)
-    favorito = models.BooleanField(default=False)
+    descripcion_checklist = models.TextField(max_length=250)
     
     
     class Meta:

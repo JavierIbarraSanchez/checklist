@@ -11,4 +11,4 @@ class ActividadSerializer(serializers.ModelSerializer):
 class ChecklistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Checklist
-        fields = ('id_checklist','fecha_creacion','fecha_plazo','nombre_checklist','descripcion_checklist','favorito')
+        fields = ('id_checklist','fecha_creacion','fecha_plazo','nombre_checklist','descripcion_checklist')

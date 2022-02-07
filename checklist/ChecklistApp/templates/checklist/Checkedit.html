@@ -1,17 +1,38 @@
-<div class="modal-dialog modal-lg" role="document">
-    <div class="modal-conten">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
         <div class="modal-header">
             <h2 class="modal-title"> Editar Checklist</h2>
-            <button class="close" type = "button" data-dismiss = "modal" aria-label="close"><span aria-hidden="true" >$times;</span></button>
+            <button class="close" type = "button" data-dismiss = "modal" aria-label="close"><span aria-hidden="true" >&times;</span></button>
+        </div>
+            <form action=" {% url 'editarchecklist' object.id_checklist %}" method="post">
+                {% csrf_token %}
             <div class="modal-body">
-                    {{form}}
+                <div id="labels">
+                    <label for="">Nombre checklist</label>
+                </div>
+                <div class="imputs">
+                    {{ form.nombre_checklist }}
+
+                </div>
+                <div id="labels">
+                    <label for="">Fecha Checklist</label>
+                </div>
+                <div class="imputs">
+                    {{ form.fecha_plazo}}
+                </div>
+                <div id="labels">
+                    <label for="">Descripcion Checklist</label>
+                </div>
+                <div class="imputs">
+                    {{ form.descripcion_checklist}}
+                </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" type="button" data-dismiss = "modal"> Cancelar</button>
-                <button class="btn btn-prymary" type="submit">Aceptar</button>
+                <button class="btn btn-success" type="submit">Aceptar</button>
             </div>
-
-        </div>
+        </form>
+        
     </div>
 
 

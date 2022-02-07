@@ -4,6 +4,7 @@ from multiprocessing import context
 from pyexpat import model
 from xml.etree.ElementTree import tostring
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
 from ChecklistApp.models import *
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -11,6 +12,7 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
 from .forms import *
+from django.views.generic.edit import UpdateView
 # Create your views here.
 
 def index(request):
@@ -40,11 +42,22 @@ def Actdetalle(request,**kwargs):
     actividad = Actividad.objects.filter(id_checklist = id_checklist)
     checklist = Checklist.objects.filter(id_checklist = id_checklist)
 
+    id_string = str(id_checklist)
+
+    if request.method == "POST":
+        form = Actividadform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('http://127.0.0.1:8000/%2FActividades/'+id_string)
+    else:
+        form = Actividadform()
+   
+
     
     return render(
         request,
         'actividad/Actdetalle.html',
-         context = {'datos_act' : actividad, 'datos_check':checklist }
+         context = {'datos_act' : actividad, 'datos_check':checklist, 'form':form }
     )
 
 def Crear_check(request):
@@ -64,6 +77,17 @@ def eliminar_checklist(request,**kwargs):
     check =  get_object_or_404(Checklist,id_checklist=id_checklist)
     check.delete()
     return(redirect("home"))
+
+class ActualizarChecklist(UpdateView):
+    model = Checklist
+    form_class = Checklistform
+    template_name = 'checklist/Checkedit.html'
+    success_url = reverse_lazy('home')
+
+    def get_context_data(self,**kgargs):
+        context = super().get_context_data(**kgargs)
+        context['Checklist'] = Checklist.objects.all()
+        return context
 
 def editar_checklist(request,**kwargs):
     id_checklist = kwargs.get('id_checklist')

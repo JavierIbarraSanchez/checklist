@@ -6,7 +6,7 @@ class Checklistform(forms.ModelForm):
 
     class Meta: 
         model = Checklist
-        fields = ['fecha_plazo','nombre_checklist','descripcion_checklist','favorito']
+        fields = ['id_checklist','fecha_plazo','nombre_checklist','descripcion_checklist']
 
 
 class Actividadform(forms.ModelForm):
