@@ -1,39 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
- 
-        {# Cargamos la librería #}
-        {% load bootstrap4 %}
-     
-        {# CSS Bootstrap #}
-        {% bootstrap_css %} 
-        
-        {# Archivos #}
-        {% load static %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<body>
-    <form action="" method="post">
-        {% csrf_token %}
-        <div>
-            <p>Nombre actividad</p>
-            {{ form.nombre_actividad }}
-        </div>
-        <div>
-            <p>Descripcion</p>
-            {{ form.descripcion_actividad }}
-        </div>
-        <div>
-            <p>Realizada</p>
-            {{ form.actividad_realizada }}
-        </div>
-        <div>
-            
-            {{ form.id_checklist}}
-        </div>
 
-        <button>Crear actividad</button>
-    </form>
-</body>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Crear nueva actividad</h3>
+                    <button type ="button"  data-dismiss = "modal" aria-label="close" class="close">&times;</button>
+                    
+                </div>
+                
+                    <form action="" method="post">
 
-</html>
+                        <div class="modal-body">
+                        {% csrf_token %}
+                        <div id="labels">
+                            <label for="">Nombre Actividad</label>
+                        </div>
+                        <div class="imputs">
+                            {{ form.nombre_actividad }}
+
+                        </div>
+                        <div id="labels">
+                            <label for="">Descripción actividad</label>
+                        </div>
+                        <div class="imputs">
+                            {{ form.descripcion_actividad}} 
+                        </div>
+                        <div class="imputs">
+                            {{ form.actividad_realizada}} <label for="">Actividad Realizada</label>
+                        </div>
+                      
+                        <div>
+                            {{ form.id_checklist}}
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger" type="button" data-dismiss = "modal"> Cancelar</button>
+                            <button class="btn btn-success " type="submit">Aceptar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
