@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'ChecklistApp',
     'bootstrap4',
     'widget_tweaks',
-    'api'
+    'api',
+    'bootstrap_datepicker_plus'
 ]
 
 MIDDLEWARE = [

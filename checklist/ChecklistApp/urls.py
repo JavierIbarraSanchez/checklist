@@ -10,6 +10,8 @@ urlpatterns = [
     path('/Actividades/CrearActividad/<int:id_checklist>', views.Crear_actividad, name = 'crearactividad'),
     path('/Actividades/eliminar/<int:id_actividad>',views.eliminar_actividad, name='eliminaractividad'),
     path('/Actividades/modificar/<int:id_actividad>/', views.editar_actividad, name = 'editaractividad'),
+    path('/Actividades/eliminarModal/<int:id_actividad>/', views.AbrirModalEliminarAct, name = 'abrirmodaleliminaract'),
+    path('/Checklist/eliminarModal/<int:id_checklist>/', views.AbrirModalEliminarCheck, name = 'abrirmodaleliminarcheck'),
 
 
     #Apis urls

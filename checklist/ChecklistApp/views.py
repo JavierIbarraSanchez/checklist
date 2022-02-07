@@ -43,7 +43,7 @@ def Actdetalle(request,**kwargs):
     checklist = Checklist.objects.filter(id_checklist = id_checklist)
 
     id_string = str(id_checklist)
-
+    #print(actividad)
     if request.method == "POST":
         form = Actividadform(request.POST)
         if form.is_valid():
@@ -108,16 +108,23 @@ def editar_checklist(request,**kwargs):
 def Crear_actividad(request,**kwargs):
 
     id_checklist = kwargs.get('id_checklist')
-    check = Checklist.objects.get(id_checklist = id_checklist)
+    check = get_object_or_404(Checklist,id_checklist=id_checklist)
+    id_foranea = check.id_checklist
     id_string = str(id_checklist)
-
+    initial_data={
+        'nombre_actividad': " ",
+        'descripcion_actividad': " ",
+        'actividad_realizada': "" ,
+        'id_checklist': id_foranea,
+    }
+    print(initial_data)
     if request.method == "POST":
         form = Actividadform(request.POST)
         if form.is_valid():
             form.save()
             return redirect('http://127.0.0.1:8000/%2FActividades/'+id_string)
     else:
-        form = Actividadform()
+        form = Actividadform(initial=initial_data)
     context = { 'form':form, 'check_id':check}
     return render(request,'actividad/ActCrear.html',context)
 
@@ -148,7 +155,16 @@ def editar_actividad(request,**kwargs):
         form = Actividadform(instance= check )
     context = { 'form': form, 'id_actividad':id_actividad }
     return render(request,"actividad/Actedit.html",context)
+    
 
+def AbrirModalEliminarAct(request,**kwargs):
+    id_actividad = kwargs.get('id_actividad')
+    check =  get_object_or_404(Actividad,id_actividad=id_actividad)
+    id_foranea = check.id_checklist.id_checklist
+    id_string = str(id_foranea)
+
+    context = {'id_actividad':id_actividad}
+    return render(request,"actividad/EliminarAct.html",context)
 
 class ActualizarActividad(UpdateView):
     model = Actividad
@@ -160,3 +176,10 @@ class ActualizarActividad(UpdateView):
         context = super().get_context_data(**kgargs)
         context['Actividad'] = Checklist.objects.all()
         return context
+
+def AbrirModalEliminarCheck(request,**kwargs):
+    id_checklist = kwargs.get('id_checklist')
+    check =  get_object_or_404(Checklist,id_checklist=id_checklist)
+
+    context = {'id_checklist':id_checklist}
+    return render(request,"checklist/EliminarChecklist.html",context)

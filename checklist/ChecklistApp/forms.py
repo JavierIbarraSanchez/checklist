@@ -1,12 +1,18 @@
 from dataclasses import field
 from django import forms
+
+from .widgets import DatePickerInput
 from .models import *
 
 class Checklistform(forms.ModelForm):
 
     class Meta: 
         model = Checklist
-        fields = ['id_checklist','fecha_plazo','nombre_checklist','descripcion_checklist']
+        fields = ['fecha_plazo','nombre_checklist','descripcion_checklist']
+
+        widgets =  {
+            'fecha_plazo':DatePickerInput(format=('%Y-%m-%d')),
+        }
 
 
 class Actividadform(forms.ModelForm):

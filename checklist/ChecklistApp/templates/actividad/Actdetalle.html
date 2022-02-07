@@ -13,6 +13,11 @@
    
 </head>
 <body>
+    <div class="container">
+
+        <button class="btn btn-danger"><a href="{% url 'home' %}" class="glyphicon glyphicon-align-left"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+          </svg></a></button>
     <div>
         {% for datos_check in datos_check %}
         <h5> {{ datos_check.nombre_checklist }} </h5>
@@ -38,19 +43,22 @@
         <tr>
             <td> {{ datos_act.nombre_actividad }}</td>
             <td> {{ datos_act.descripcion_actividad }}</td>
-            {% if datos_check.actividad_realizada == True %}
-            <td><input type="checkbox" name="norealizado" id="norealizado" value="False"></td>
+            {% if datos_act.actividad_realizada == True %}
+            <td><input type="checkbox" name="norealizado" id="realizado" checked ></td>
+            {% elif datos_act.actividad_Realizada == False %}
+            <td><input type="checkbox" name="Realizado" id="norealizado"  ></td>
             {% else %}
-            <td><input type="checkbox" name="Realizado" id="Realizado" value="True"></td>
+            <td><input type="checkbox" name="Realizado" id="norealizado"  ></td>
             {% endif %}
-            <td><button  class ="btn-danger"> <a href = "{% url 'eliminaractividad' datos_act.id_actividad %}">Eliminar</a></button> 
-                <button class ="btn-primary" onclick="abrir_modal_editar('{% url 'editaractividad' datos_act.id_actividad %}')"> Modificar</button> </td>
+            <td><button  class =" btn btn-danger" onclick="abrir_modal_eliminar('{% url 'abrirmodaleliminaract' datos_act.id_actividad %}')">Eliminar</button> 
+                <button class =" btn btn-primary" onclick="abrir_modal_editar('{% url 'editaractividad' datos_act.id_actividad %}')"> Modificar</button> </td>
         </tr>
         {% endfor %}
                 </tbody>
             </table>
         </div> 
     </div> 
+</div>
     <div class="container">
             
         <div class="modal fade" id="modalCrear">
@@ -61,6 +69,13 @@
         <div class="modal fade" id="modalEditar">
         </div>
     </div>
+
+    <div class="container">  
+        <div class="modal fade" id="modalEliminar">
+        </div>
+    </div>
+
+    
 
     <script type="text/javascript">
         function abrir_modal_crear(url){
@@ -77,6 +92,13 @@
                 $(this).modal('show');
             })
         }
+
+        function abrir_modal_eliminar(url){
+
+        $('#modalEliminar').load(url, function(){
+        $(this).modal('show');
+        })
+}
 
 
 

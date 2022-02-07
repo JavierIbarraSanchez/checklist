@@ -34,7 +34,7 @@
                 <td> {{ datos_check.fecha_plazo }}</td>
                 
                 <td><a href ="{% url 'Actividades' datos_check.id_checklist %}"class="btn btn-info"> Actividades</a></td>
-                <td><button class =" btn btn-danger" ><a href = "{% url 'eliminarchecklist' datos_check.id_checklist %}">Eliminar</a> </button> 
+                <td><button class =" btn btn-danger"  onclick="abrir_modal_edit('{% url 'abrirmodaleliminarcheck' datos_check.id_checklist %}')">Eliminar </button> 
                     <button class =" btn btn-primary" onclick="abrir_modal_edit('{% url 'editarchecklist' datos_check.id_checklist %}')"> Modificar</button> </td>
             </tr>
             {% endfor %}
@@ -44,9 +44,6 @@
                 
 
                 </div>
-            </div> 
-        </div> 
-        
         </div>
         <div class="container">
             
@@ -93,10 +90,12 @@
         </div>
         <div class="container">
             <div class="modal fade" id="editar_checklist" role="dialog">
+            </div>
+        </div>
 
+        <div class="container">  
+            <div class="modal fade" id="modalEliminar">
 
-
-            
             </div>
         </div>
        
@@ -115,6 +114,16 @@
                 $(this).modal('show');
             })
         }
+
+        function abrir_modal_eliminar(url){
+
+        $('#modalEliminar').load(url, function(){
+        $(this).modal('show');
+        })
+
+
+
+}
     </script>
 </body>
 </html>
