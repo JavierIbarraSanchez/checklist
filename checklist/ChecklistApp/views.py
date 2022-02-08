@@ -2,6 +2,7 @@ from dataclasses import field
 from email import message
 from multiprocessing import context
 from pyexpat import model
+from tkinter.tix import CheckList
 from xml.etree.ElementTree import tostring
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
@@ -117,7 +118,6 @@ def Crear_actividad(request,**kwargs):
         'actividad_realizada': "" ,
         'id_checklist': id_foranea,
     }
-    print(initial_data)
     if request.method == "POST":
         form = Actividadform(request.POST)
         if form.is_valid():
@@ -143,7 +143,6 @@ def editar_actividad(request,**kwargs):
     id_actividad = kwargs.get('id_actividad')
     check = Actividad.objects.get(id_actividad = id_actividad)
     id_foranea = check.id_checklist.id_checklist
-    print(id_foranea)
     id_string = str(id_foranea)
     
     if request.method == "POST":
@@ -183,3 +182,10 @@ def AbrirModalEliminarCheck(request,**kwargs):
 
     context = {'id_checklist':id_checklist}
     return render(request,"checklist/EliminarChecklist.html",context)
+
+
+def UpdateCheck(request,**kwargs):
+    id_actividad = kwargs.get('id_actividad')
+    check = get_object_or_404(CheckList,id_actividad= id_actividad)
+
+    

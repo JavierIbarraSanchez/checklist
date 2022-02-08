@@ -1,17 +1,75 @@
-.bg{
-
-    background-repeat: repeat-x;
-    background-size: 100%;
+#bg {
+    background-repeat: repeat-y;
+    background-size: 200%;
     background-position: top;
     background-attachment: fixed;
-}
+   }
 
 #Tabla{
-    background-color: white;
-    margin-top: 25%;
-    border: 2px solid #ccc;
+   
+    margin-top: 5%;
+    
 }
 
+
 .tablita{
-    border-radius: 50%;
+    padding-left: 50px;
+    background-color: white;
+}
+
+.check {
+    width: 50px;
+    height: 40px; 
+    display: block;
+    text-align: center;
+    margin-left: 50px;
+}
+
+#volver{
+    width: 50px;
+    height: 40px; 
+    color: blue;
+
+}
+
+.boton_actividad{
+    width: 100%;
+    text-align: center;
+}
+
+#boton_crear{
+    width: 100%;
+    text-align: center;
+}
+
+#boton_eliminar{
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+    
+}
+
+#boton_modificar{
+    text-align: center;
+}
+
+#datos {
+
+    width: 100%;
+    margin-top: 15%;
+
+
+}
+
+.contenedor {
+   
+    padding: 2%;
+    background-color: white;
+    
+    border: 2px solid grey;
+    border-radius: 25px;
+}
+
+.volver {
+    margin-top: 2%;
 }

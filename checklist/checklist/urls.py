@@ -17,6 +17,8 @@ from re import template
 from django.contrib import admin
 from django.urls import path,include
 from ChecklistApp.views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,4 +36,4 @@ urlpatterns = [
    # path('Checklist/editar/<int:pk>',ChecklistActualizar.as_view(template_name = "checklist/Checkedit.html"),name = 'CheckEdit'),
    # path('Actividad/eliminar/<int:pk>',ActividadEliminar.as_view(),name = 'Actdelete'),
    # path('Checklist/eliminar/<int:pk>',ActividadEliminar.as_view(),name = 'Checkdelete')
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

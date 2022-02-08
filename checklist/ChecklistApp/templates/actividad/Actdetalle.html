@@ -4,47 +4,54 @@
 {%block body %}
 
     <div class="container">
-        <div class="Titulo">
-            <button class="btn "><a href="{% url 'home' %}" class="glyphicon glyphicon-align-left"> <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
-                <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
-              </svg>
-              </a></button>
+        <div class="volver">
+            <a href="{% url 'home' %}" class="btn"> <img id = "volver" src="{% static 'img/house-door.svg' %}" alt="">
+              Volver a tareas</a>
+            </div>
 
-            <div class=" Titulo_act">
+            <div  id="datos" >
                 {% for datos_check in datos_check %}
             <h3> {{ datos_check.nombre_checklist }} </h5>
             {% endfor %}
 
             </div>
             
-        </div>
+        
     <div id="Tabla">
-        <div>
-            <table class="table table-striped table-hover">
-                <thead>
-                        <th>Nombre actividad</th>
-                        <th>Descripción actividad</th>
-                        <th>Actividad realizada </th>
-                        <th>
+        <div class="contenedor">
+        <table class="table table-striped table-hover table-responsive-sm tablita table-bordered table-sm ">
+               
+            <thead class="table-info">
+                        <th scope = "col"> Nombre actividad</th>
+                        <th scope = "col"> Descripción actividad</th>
+                        <th scope = "col"> Actividad realizada </th>
+                        <th scope = "col">
                             {% for datos_check in datos_check %}
-                            <button type="button" class="btn btn-success" data-toggle="modal" onclick="abrir_modal_crear_act('{% url 'crearactividad' datos_check.id_checklist %}')">Crear nueva actividad</button>
+                            <button type="button" class="btn btn-success" id="boton_crear" data-toggle="modal" onclick="abrir_modal_crear_act('{% url 'crearactividad' datos_check.id_checklist %}')">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg>    Crear nueva actividad</button>
                             {% endfor %}
                         </th>
                 </thead>
-                <tbody>
+                    <tbody>
         {% for datos_act in datos_act  %}
         <tr>
             <td> {{ datos_act.nombre_actividad }}</td>
             <td> {{ datos_act.descripcion_actividad }}</td>
             {% if datos_act.actividad_realizada == True %}
-            <td><input type="checkbox" name="norealizado" id="realizado" checked ></td>
-            {% elif datos_act.actividad_Realizada == False %}
-            <td><input type="checkbox" name="Realizado" id="norealizado"  ></td>
+            
+            <td> <a href=""><img class = "check" src="{% static 'img/check-circle-fill.svg' %}" alt="Checkeado" ></td>
             {% else %}
-            <td><input type="checkbox" name="Realizado" id="norealizado"  ></td>
+            <td> <a href=""><img class = "check" src="{% static 'img/circle.svg' %}" alt="NoCheckeado"></td>
             {% endif %}
-            <td><button  class =" btn btn-danger" onclick="abrir_modal_eliminar_act('{% url 'abrirmodaleliminaract' datos_act.id_actividad %}')">Eliminar</button> 
-                <button class =" btn btn-primary" onclick="abrir_modal_editar_act('{% url 'editaractividad' datos_act.id_actividad %}')"> Modificar</button> </td>
+            <td> <button id="boton_eliminar" class =" btn btn-danger" onclick="abrir_modal_eliminar_act('{% url 'abrirmodaleliminaract' datos_act.id_actividad %}')"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" margin-left = "1px" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+              </svg> Eliminar</button> 
+                 <button  id="boton_modificar" class =" btn btn-primary" onclick="abrir_modal_editar_act('{% url 'editaractividad' datos_act.id_actividad %}')"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" margin-left = "1px" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
+                    <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                  </svg>  Modificar</button> </td>
         </tr>
         {% endfor %}
                 </tbody>
