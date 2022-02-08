@@ -1,7 +1,10 @@
-body {
-    background-image: url('{% static "img/imagenNuves.jpeg" %}');
-    background-color: #cccccc;
-   }
+.bg{
+
+    background-repeat: repeat-x;
+    background-size: 100%;
+    background-position: top;
+    background-attachment: fixed;
+}
 
 #Tabla{
     background-color: white;

@@ -12,20 +12,20 @@
                         <div class="modal-body">
                         {% csrf_token %}
                         <div id="labels">
-                            <label for="">Nombre Actividad</label>
+                            <p class="modal-text" >Nombre Actividad</p>
                         </div>
                         <div class="imputs">
                             {{ form.nombre_actividad }}
 
                         </div>
                         <div id="labels">
-                            <label for="">Descripción actividad</label>
+                            <p class="modal-text" >Descripción actividad</p>
                         </div>
                         <div class="imputs">
                             {{ form.descripcion_actividad}} 
                         </div>
                         <div class="imputs">
-                            {{ form.actividad_realizada}} <label for="">Actividad Realizada</label>
+                            {{ form.actividad_realizada}} <label for=""><p class="modal-text" >Actividad realizada?</p>
                         </div>
                       
                         <div class="d-none">
