@@ -35,3 +35,18 @@ $('#modalEliminar').load(url, function(){
 $(this).modal('show');
 })
 }
+
+function abrir_modal_updateuncheck(url){
+
+    $('#modificarUncheck').load(url, function(){
+        $(this).modal('show');
+
+        
+})
+}
+function abrir_modal_updatecheck(url){
+
+$('#modificarCheck').load(url, function(){
+    $(this).modal('show');
+})
+}
