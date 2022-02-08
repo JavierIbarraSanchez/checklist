@@ -18,7 +18,7 @@ from django.views.generic.edit import UpdateView
 
 def index(request):
     
-    checklist = Checklist.objects.all()
+    checklist = Checklist.objects.all().order_by('id_checklist')
 
     #Formulario de posteo:
     
@@ -40,8 +40,8 @@ def index(request):
 
 def Actdetalle(request,**kwargs):
     id_checklist = kwargs.get('id_checklist')
-    actividad = Actividad.objects.filter(id_checklist = id_checklist)
-    checklist = Checklist.objects.filter(id_checklist = id_checklist)
+    actividad = Actividad.objects.filter(id_checklist = id_checklist).order_by('id_actividad')
+    checklist = Checklist.objects.filter(id_checklist = id_checklist).order_by('id_checklist')
 
     id_string = str(id_checklist)
     #print(actividad)
@@ -184,8 +184,57 @@ def AbrirModalEliminarCheck(request,**kwargs):
     return render(request,"checklist/EliminarChecklist.html",context)
 
 
+def UpdateUnCheck(request,**kwargs):
+    id_actividad = kwargs.get('id_actividad')
+    check = get_object_or_404(Actividad,id_actividad= id_actividad)
+    nombre_actividad =  check.nombre_actividad
+    descripcion = check.descripcion_actividad
+    id_foranea = check.id_checklist
+    id_string = str(id_foranea)
+
+    print(check)
+    initial_data={
+        'nombre_actividad':  nombre_actividad,
+        'descripcion_actividad': descripcion,
+        'actividad_realizada': False,
+        'id_checklist': id_foranea,
+    }
+    print(initial_data)
+    if request.method == "POST":
+        form = Actividadform(request.POST,instance = check )
+        if form.is_valid():
+            form.save()
+            return redirect('http://127.0.0.1:8000/%2FActividades/'+id_string)
+    else:
+        form = Actividadform(initial=initial_data )
+    context = { 'form': form, 'id_actividad':id_actividad }
+    return render(request,"actividad/uncheck.html",context)
+
+
 def UpdateCheck(request,**kwargs):
     id_actividad = kwargs.get('id_actividad')
-    check = get_object_or_404(CheckList,id_actividad= id_actividad)
+    check = get_object_or_404(Actividad,id_actividad= id_actividad)
+    nombre_actividad =  check.nombre_actividad
+    descripcion = check.descripcion_actividad
+    id_foranea = check.id_checklist
+    id_string = str(id_foranea)
 
-    
+    print(check)
+    initial_data={
+        'nombre_actividad':  nombre_actividad,
+        'descripcion_actividad': descripcion,
+        'actividad_realizada': True,
+        'id_checklist': id_foranea,
+    }
+    print(initial_data)
+    if request.method == "POST":
+        form = Actividadform(request.POST,instance = check )
+        if form.is_valid():
+            form.save()
+            return redirect('http://127.0.0.1:8000/%2FActividades/'+id_string)
+    else:
+        form = Actividadform(initial=initial_data )
+    context = { 'form': form, 'id_actividad':id_actividad }
+    return render(request,"actividad/check.html",context)
+   
+

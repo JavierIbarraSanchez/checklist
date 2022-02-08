@@ -13,11 +13,33 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <form action="" method="post">
+    <form action=" {% url 'editarchecklist' object.id_checklist %}" method="post">
         {% csrf_token %}
-        {{ form }}
-        <button>Crear checklist</button>
-    </form>
+    <div class="modal-body">
+        <div id="labels">
+            <p class="modal-text">Nombre de la tarea </p>
+        </div>
+        <div class="imputs">
+            {{ form.nombre_checklist }}
+        </div>
+        <div id="labels">
+            <p class="modal-text">Fecha de la tarea </p>
+        </div>
+        <div class="imputs">
+            {{ form.fecha_plazo}}
+        </div>
+        <div id="labels">
+            <p class="modal-text">Descripción </p>
+        </div>
+        <div class="imputs">
+            {{ form.descripcion_checklist}}
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger" type="button" data-dismiss = "modal"> Cancelar</button>
+        <button class="btn btn-success" type="submit">Aceptar</button>
+    </div>
+</form>
 </body>
 
 </html>

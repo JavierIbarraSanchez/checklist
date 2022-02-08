@@ -1,0 +1,44 @@
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Realizar actividad?</h3>
+                    <button type ="button"  data-dismiss = "modal" aria-label="close" class="close">&times;</button>
+                    
+                </div>
+                    
+                    <form action="{% url 'editaractividad' id_actividad %}" method="post">
+
+                        
+                        {% csrf_token %}
+                        <div id="d-none">
+                            <p class="d-none" >Nombre Actividad</p>
+                        </div>
+                        <div class="d-none">
+                            {{ form.nombre_actividad }}
+
+                        </div>
+                        <div id="d-none">
+                            <p class="d-none" >Descripción actividad</p>
+                        </div>
+                        <div class="d-none">
+                            {{ form.descripcion_actividad}} 
+                        </div>
+                        <div class="d-none">
+                            {{ form.actividad_realizada}} <label for="">Actividad realizada? </label>
+                        </div>
+                      
+                        <div class="d-none">
+                            {{ form.id_checklist }}
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button class="btn btn-danger" type="button" data-dismiss = "modal"> Cancelar</button>
+                            <button class="btn btn-success " type="submit">Aceptar</button>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+</div>

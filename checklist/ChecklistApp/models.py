@@ -34,5 +34,5 @@ class Actividad(models.Model):
         db_table = 'actividad'
     
     def __str__(self):
-        return self.nombre_checklist
+        return self.nombre_actividad
 
