@@ -38,7 +38,7 @@
         {% for datos_act in datos_act  %}
         <tr>
             <td> {{ datos_act.nombre_actividad }}</td>
-            <td> {{ datos_act.descripcion_actividad }}</td>
+            <td > {{ datos_act.descripcion_actividad }}</td>
             {% if datos_act.actividad_realizada == True %}
             
             <td> <button class="btn" style="width: 100%; height: 100%;" onclick="abrir_modal_updateuncheck('{% url 'actualizauncheck' datos_act.id_actividad %}')"><img class = "check" src="{% static 'img/check-circle-fill.svg' %}" alt="Checkeado" > </button></td>
