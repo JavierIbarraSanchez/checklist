@@ -3,6 +3,7 @@ from django.urls import path,  re_path
 from api import views
 urlpatterns = [
     #Apis urls
+     path('', views.ApiOverview, name='apihome'),
     path('Actividad', views.ActividadApiOverview, name='actividad'),
     path('Checklist', views.ChecklistApiOverview, name='checklist'),
     path('Actividad/Crear/', views.crear_actividad, name='crear-actividad'),

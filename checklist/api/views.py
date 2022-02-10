@@ -13,25 +13,34 @@ from rest_framework import serializers
 from rest_framework import status
 # Create your views here.
 
+
+
+@api_view(['GET'])
+def ApiOverview(request):
+    api_urls = {
+        'Actividades': '/Actividad',
+        'Checklist': '/Checklist',
+        
+    }
+    return Response(api_urls)
+
 @api_view(['GET'])
 def ActividadApiOverview(request):
     api_urls = {
-        'all_actividades': '/',
-        'Search by Nombre actividad': '/?nombre_actividad=actividad_name',
-        'Add': '/create',
-        'Update:': '/update/pk',
-        'Delete': '/actividad/pk/delete'
+        'Ver todas las actividades': '/Ver/',
+        'Crear nueva actividad': '/Crear/',
+        'Modificar actividad': '/Modificar/pk',
+        'Eliminar actividad': '/eliminar/pk'
     }
     return Response(api_urls)
 
 @api_view(['GET'])
 def ChecklistApiOverview(request):
     api_urls = {
-        'all_checklist': '/',
-        'Search by Nombre checklist': '/?nombre_checklist=checklist_name',
-        'Add': '/create',
-        'Update:': '/update/pk',
-        'Delete': '/checklist/pk/delete'
+        'Ver todos los checklist': '/Ver/',
+        'Crear nuevo checklist': '/Crear/',
+        'Modificar Checklist': '/Modificar/pk',
+        'Eliminar Checklist': '/eliminar/pk'
     }
     return Response(api_urls)
 
