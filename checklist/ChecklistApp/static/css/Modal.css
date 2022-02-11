@@ -1,31 +1,29 @@
 #labels {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
-.imputs{
-    background-color: #fafafa;
+.imputs {
+  background-color: #fafafa;
   margin: 1%;
- 
+
   /* IMPORTANTE */
-  text-align: center
+  text-align: center;
 }
 
-.modal-text{
-    text-align: center;
-    margin-top: 0.5%;
-    width: 100%;
+.modal-text {
+  text-align: center;
+  margin-top: 0.5%;
+  width: 100%;
 }
-
 
 .bg {
-    background-repeat: repeat-x;
-    background-size: 100%;
-    background-position: top;
-    background-attachment: fixed;
+  background-repeat: repeat-x;
+  background-size: 100%;
+  background-position: top;
+  background-attachment: fixed;
 }
 
-#enlace_eliminar
-{
-    color: white;   
-    text-decoration: none;
+#enlace_eliminar {
+  color: white;
+  text-decoration: none;
 }
